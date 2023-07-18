@@ -70,7 +70,7 @@ it('a tree is created from an EVEN number of value', () => {
   })
 });
 
-it('a tree is created with from an unsorted array with duplicates', () => {
+it('a tree is created from an unsorted array with duplicates', () => {
   let t = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
   expect(t.root).toStrictEqual(
     {
@@ -119,4 +119,44 @@ it('a tree is created with from an unsorted array with duplicates', () => {
       }
     }
   )
+});
+
+it('a new node is inserted in the tree', () => {
+  let t = Tree([1, 2, 3]);
+  // insert() returns the root
+  expect(t.insert(4)).toStrictEqual({
+    "data": 2,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "data": 3,
+      "left": null,
+      "right": {
+        "data": 4,
+        "left": null,
+        "right": null
+      }
+    }
+  });
+});
+
+it('a new node is not inserted because the value is duplicated', () => {
+  let t = Tree([1, 2, 3]);
+  // insert() returns the root
+  expect(t.insert(3)).toStrictEqual({
+    "data": 2,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "data": 3,
+      "left": null,
+      "right": null
+    }
+  });
 });
