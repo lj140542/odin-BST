@@ -160,3 +160,105 @@ it('a new node is not inserted because the value is duplicated', () => {
     }
   });
 });
+
+it('remove a leaf from the tree', () => {
+  let t = Tree([1, 2, 3]);
+  // remove() returns the root
+  expect(t.remove(1)).toStrictEqual({
+    "data": 2,
+    "left": null,
+    "right": {
+      "data": 3,
+      "left": null,
+      "right": null
+    }
+  });
+});
+
+it('remove a node with one child from the tree', () => {
+  let t = Tree([1, 2, 3, 4]);
+  // remove() returns the root
+  expect(t.remove(3)).toStrictEqual({
+    "data": 2,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "data": 4,
+      "left": null,
+      "right": null
+    }
+  });
+});
+
+it('remove a node with two children from the tree', () => {
+  let t = Tree([1, 2, 3, 4, 5, 6]);
+  // remove() returns the root
+  expect(t.remove(5)).toStrictEqual({
+    "data": 3,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": {
+        "data": 2,
+        "left": null,
+        "right": null
+      }
+    },
+    "right": {
+      "data": 6,
+      "left": {
+        "data": 4,
+        "left": null,
+        "right": null
+      },
+      "right": null
+    }
+  });
+});
+
+it('remove the root', () => {
+  let t = Tree([1, 2, 3, 4, 5, 6]);
+  // remove() returns the root
+  expect(t.remove(3)).toStrictEqual({
+    "data": 4,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": {
+        "data": 2,
+        "left": null,
+        "right": null
+      }
+    },
+    "right": {
+      "data": 5,
+      "left": null,
+      "right": {
+        "data": 6,
+        "left": null,
+        "right": null
+      }
+    }
+  });
+});
+
+it('remove nothing because the value is not present in the tree', () => {
+  let t = Tree([1, 2, 3]);
+  // insert() returns the root
+  expect(t.remove(4)).toStrictEqual({
+    "data": 2,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "data": 3,
+      "left": null,
+      "right": null
+    }
+  });
+});

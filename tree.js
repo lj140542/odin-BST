@@ -45,7 +45,55 @@ const Tree = (array) => {
     }
     return root;
   };
-  return { root, prettyPrint, insert };
+  const remove = (value) => {
+    let checkedNode = root;
+    let parentNode = null;
+
+    // finding the node with the correct value, and its parent
+    while (checkedNode != null) {
+      if (value < checkedNode.data) {
+        if (checkedNode.left === null) return root;
+        else {
+          parentNode = checkedNode;
+          checkedNode = checkedNode.left;
+        }
+      }
+      else if (value > checkedNode.data) {
+        if (checkedNode.right === null) return root;
+        else {
+          parentNode = checkedNode;
+          checkedNode = checkedNode.right;
+        }
+      }
+      else break;
+    }
+
+    // dealing with the found node
+    if (checkedNode.left === null && checkedNode.right === null) {
+      checkedNode.data < parentNode.data ? parentNode.left = null : parentNode.right = null;
+    }
+    else if (checkedNode.left === null) {
+      checkedNode.data = checkedNode.right.data;
+      checkedNode.data < parentNode.data ? parentNode.left = checkedNode.right : parentNode.right = checkedNode.right;
+    }
+    else if (checkedNode.right === null) {
+      checkedNode.data = checkedNode.left.data;
+      checkedNode.data < parentNode.data ? parentNode.left = checkedNode.left : parentNode.left = checkedNode.right;
+    }
+    else {
+      let smallestChild = checkedNode.right;
+      let tmpData = null;
+      while (smallestChild.left != null) {
+        smallestChild = smallestChild.left;
+      }
+      tmpData = smallestChild.data;
+      remove(smallestChild.data);
+      checkedNode.data = tmpData;
+    }
+
+    return root;
+  };
+  return { root, prettyPrint, insert, remove };
 };
 
 export { Tree };
