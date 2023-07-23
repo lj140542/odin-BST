@@ -162,7 +162,7 @@ const Tree = (array) => {
     let currentHeight = 0;
     let leftHeight = 0;
     let rightHeight = 0;
-
+    if (node === null) return -1;
     if (node.left == null && node.right == null) return 0;
     else {
       currentHeight = 1;
@@ -176,7 +176,7 @@ const Tree = (array) => {
   const depth = (node) => {
     let checkedNode = root;
     let cpt = 0;
-
+    if (node === null) return -1;
     while (checkedNode != null) {
       if (node === checkedNode) return cpt;
       if (node.data < checkedNode.data) checkedNode = checkedNode.left;
@@ -187,9 +187,9 @@ const Tree = (array) => {
     return -1;
   };
   return {
-    root, prettyPrint, insert, 
-    remove, find, levelOrder, 
-    inorder, preorder, postorder, 
+    root, prettyPrint, insert,
+    remove, find, levelOrder,
+    inorder, preorder, postorder,
     height, depth
   };
 };

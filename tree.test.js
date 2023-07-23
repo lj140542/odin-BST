@@ -320,6 +320,7 @@ it('get the node height', () => {
   expect(t.height(t.find(9))).toBe(1);
   expect(t.height(t.find(8))).toBe(2);
   expect(t.height(t.find(5))).toBe(3);
+  expect(t.height(t.find(20))).toBe(-1);
 });
 
 it('get the node depth', () => {
@@ -328,4 +329,5 @@ it('get the node depth', () => {
   expect(t.depth(t.find(9))).toBe(2);
   expect(t.depth(t.find(8))).toBe(1);
   expect(t.depth(t.find(5))).toBe(0);
+  expect(t.depth(t.find(20))).toBe(-1);
 });
