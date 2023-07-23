@@ -173,11 +173,24 @@ const Tree = (array) => {
     currentHeight += leftHeight > rightHeight ? leftHeight : rightHeight;
     return currentHeight;
   };
+  const depth = (node) => {
+    let checkedNode = root;
+    let cpt = 0;
+
+    while (checkedNode != null) {
+      if (node === checkedNode) return cpt;
+      if (node.data < checkedNode.data) checkedNode = checkedNode.left;
+      else checkedNode = checkedNode.right;
+      cpt++;
+    }
+
+    return -1;
+  };
   return {
-    root,
-    prettyPrint, insert, remove,
-    find, levelOrder, inorder,
-    preorder, postorder, height
+    root, prettyPrint, insert, 
+    remove, find, levelOrder, 
+    inorder, preorder, postorder, 
+    height, depth
   };
 };
 

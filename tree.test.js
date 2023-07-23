@@ -321,3 +321,11 @@ it('get the node height', () => {
   expect(t.height(t.find(8))).toBe(2);
   expect(t.height(t.find(5))).toBe(3);
 });
+
+it('get the node depth', () => {
+  let t = Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  expect(t.depth(t.find(10))).toBe(3);
+  expect(t.depth(t.find(9))).toBe(2);
+  expect(t.depth(t.find(8))).toBe(1);
+  expect(t.depth(t.find(5))).toBe(0);
+});
