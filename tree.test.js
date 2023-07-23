@@ -262,3 +262,34 @@ it('remove nothing because the value is not present in the tree', () => {
     }
   });
 });
+
+it('find a node based on a value', () => {
+  let t = Tree([1, 2, 3]);
+  expect(t.find(1)).toStrictEqual({
+    "data": 1,
+    "left": null,
+    "right": null
+  });
+});
+
+it('find nothing because the value is not present in the tree', () => {
+  let t = Tree([1, 2, 3]);
+  expect(t.find(4)).toStrictEqual(null);
+});
+
+it('find the root', () => {
+  let t = Tree([1, 2, 3]);
+  expect(t.find(2)).toStrictEqual({
+    "data": 2,
+    "left": {
+      "data": 1,
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "data": 3,
+      "left": null,
+      "right": null
+    }
+  });
+});

@@ -93,7 +93,15 @@ const Tree = (array) => {
 
     return root;
   };
-  return { root, prettyPrint, insert, remove };
+  const find = (value) => {
+    let checkedNode = root;
+    while (checkedNode != null) {
+      if (checkedNode.data === value) return checkedNode;
+      checkedNode = value < checkedNode.data ? checkedNode = checkedNode.left : checkedNode = checkedNode.right;
+    }
+    return null;
+  };
+  return { root, prettyPrint, insert, remove, find };
 };
 
 export { Tree };
