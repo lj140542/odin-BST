@@ -293,3 +293,8 @@ it('find the root', () => {
     }
   });
 });
+
+it('get the node values in level order', () => {
+  let t = Tree([1, 2, 3, 4, 5]);
+  expect(t.levelOrder()).toStrictEqual([3, 1, 4, 2, 5]);
+});

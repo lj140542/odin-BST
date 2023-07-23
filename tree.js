@@ -101,7 +101,19 @@ const Tree = (array) => {
     }
     return null;
   };
-  return { root, prettyPrint, insert, remove, find };
+  const levelOrder = (funct = null) => {
+    let checkedNode = root;
+    let toBeVisited = [];
+    let ret = [];
+    while (checkedNode != null) {
+      funct != null ? funct(checkedNode) : ret.push(checkedNode.data);
+      if (checkedNode.left != null) toBeVisited.push(checkedNode.left);
+      if (checkedNode.right != null) toBeVisited.push(checkedNode.right);
+      checkedNode = toBeVisited.shift();
+    }
+    return ret;
+  }
+  return { root, prettyPrint, insert, remove, find, levelOrder };
 };
 
 export { Tree };
