@@ -298,3 +298,18 @@ it('get the node values in level order', () => {
   let t = Tree([1, 2, 3, 4, 5]);
   expect(t.levelOrder()).toStrictEqual([3, 1, 4, 2, 5]);
 });
+
+it('get the node values using \'inorder\'', () => {
+  let t = Tree([1, 2, 3, 4, 5]);
+  expect(t.inorder()).toStrictEqual([1, 2, 3, 4, 5]);
+});
+
+it('get the node values using \'preorder\'', () => {
+  let t = Tree([1, 2, 3, 4, 5]);
+  expect(t.preorder()).toStrictEqual([3, 1, 2, 4, 5]);
+});
+
+it('get the node values using \'postorder\'', () => {
+  let t = Tree([1, 2, 3, 4, 5]);
+  expect(t.postorder()).toStrictEqual([2, 1, 5, 4, 3]);
+});

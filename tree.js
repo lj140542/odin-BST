@@ -112,8 +112,53 @@ const Tree = (array) => {
       checkedNode = toBeVisited.shift();
     }
     return ret;
-  }
-  return { root, prettyPrint, insert, remove, find, levelOrder };
+  };
+  const inorder = (funct = null, node = null) => {
+    let checkedNode = node === null ? root : node;
+    let ret = [];
+
+    if (checkedNode.left != null) {
+      ret = [...ret, ...inorder(funct, checkedNode.left)];
+    }
+    ret.push(checkedNode.data);
+    if (funct != null) funct(checkedNode);
+    if (checkedNode.right != null) {
+      ret = [...ret, ...inorder(funct, checkedNode.right)];
+    }
+
+    return ret;
+  };
+  const preorder = (funct = null, node = null) => {
+    let checkedNode = node === null ? root : node;
+    let ret = [];
+
+    ret.push(checkedNode.data);
+    if (funct != null) funct(checkedNode);
+    if (checkedNode.left != null) {
+      ret = [...ret, ...preorder(funct, checkedNode.left)];
+    }
+    if (checkedNode.right != null) {
+      ret = [...ret, ...preorder(funct, checkedNode.right)];
+    }
+
+    return ret;
+  };
+  const postorder = (funct = null, node = null) => {
+    let checkedNode = node === null ? root : node;
+    let ret = [];
+
+    if (checkedNode.left != null) {
+      ret = [...ret, ...postorder(funct, checkedNode.left)];
+    }
+    if (checkedNode.right != null) {
+      ret = [...ret, ...postorder(funct, checkedNode.right)];
+    }
+    ret.push(checkedNode.data);
+    if (funct != null) funct(checkedNode);
+
+    return ret;
+  };
+  return { root, prettyPrint, insert, remove, find, levelOrder, inorder, preorder, postorder };
 };
 
 export { Tree };
