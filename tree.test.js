@@ -313,3 +313,11 @@ it('get the node values using \'postorder\'', () => {
   let t = Tree([1, 2, 3, 4, 5]);
   expect(t.postorder()).toStrictEqual([2, 1, 5, 4, 3]);
 });
+
+it('get the node height', () => {
+  let t = Tree([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  expect(t.height(t.find(10))).toBe(0);
+  expect(t.height(t.find(9))).toBe(1);
+  expect(t.height(t.find(8))).toBe(2);
+  expect(t.height(t.find(5))).toBe(3);
+});

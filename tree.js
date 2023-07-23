@@ -158,7 +158,27 @@ const Tree = (array) => {
 
     return ret;
   };
-  return { root, prettyPrint, insert, remove, find, levelOrder, inorder, preorder, postorder };
+  const height = (node) => {
+    let currentHeight = 0;
+    let leftHeight = 0;
+    let rightHeight = 0;
+
+    if (node.left == null && node.right == null) return 0;
+    else {
+      currentHeight = 1;
+      if (node.left != null) leftHeight = height(node.left);
+      if (node.right != null) rightHeight = height(node.right);
+    }
+
+    currentHeight += leftHeight > rightHeight ? leftHeight : rightHeight;
+    return currentHeight;
+  };
+  return {
+    root,
+    prettyPrint, insert, remove,
+    find, levelOrder, inorder,
+    preorder, postorder, height
+  };
 };
 
 export { Tree };
